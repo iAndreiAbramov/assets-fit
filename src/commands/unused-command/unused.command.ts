@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 
-export default (program: Command) => {
+export const registerUnusedCommand = (program: Command): void => {
 	program
 		.command('unused')
 		.description('Find unused assets')
