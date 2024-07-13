@@ -1,21 +1,23 @@
-import type { IConfigOption } from '../types/config-option.interface';
+import type { IConfigOption } from 'commands/config-command/types/config-option.interface';
 import { readOrCreateConfig } from './read-or-create-config.util.js';
 import { writeConfig } from './write-config.util.js';
+import { ILogger } from '../../../types/logger.interface';
 
 export const writeConfigOptions = async ({
 	options,
 	serviceDir,
+	logger,
 }: {
 	options: IConfigOption[];
 	serviceDir: string | undefined;
+	logger: ILogger;
 }): Promise<void> => {
 	if (!serviceDir) {
-		// todo: add logger
-		console.error('Service directory does not exist');
+		logger.errorNotify('Service directory does not exist');
 		return;
 	}
 
-	const config = await readOrCreateConfig(serviceDir);
+	const config = await readOrCreateConfig({ serviceDir, logger });
 	const newConfig = Object.assign(
 		config,
 		...options
@@ -23,5 +25,5 @@ export const writeConfigOptions = async ({
 			.map(({ option, value }) => ({ [option]: value })),
 	);
 
-	void writeConfig(serviceDir, newConfig);
+	void writeConfig({ serviceDir, newConfig, logger });
 };
