@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { getVersion } from './utils/get-version';
-import { registerConfigCommand } from './commands';
-import { registerUnusedCommand } from './commands';
+import { getVersion } from './utils/get-version.js';
+import { registerConfigCommand } from './commands/config-command/config.command.js';
+import { registerUnusedCommand } from './commands/unused-command/unused.command.js';
 
 const program = new Command();
 program
