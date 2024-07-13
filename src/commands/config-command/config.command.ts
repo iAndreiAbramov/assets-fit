@@ -2,8 +2,15 @@ import { Command } from 'commander';
 import { getOrCreateServiceDir } from './utils/create-service-dir-if-not-exists.util.js';
 import { writeConfigOptions } from './utils/write-config-option.util.js';
 import type { IConfigOption } from './types/config-option.interface';
+import { ILogger } from '../../types/logger.interface';
 
-export const registerConfigCommand = (program: Command): void => {
+export const registerConfigCommand = ({
+	program,
+	logger,
+}: {
+	program: Command;
+	logger: ILogger;
+}): void => {
 	program
 		.command('config')
 		.description('Set configuration options')
@@ -19,6 +26,10 @@ export const registerConfigCommand = (program: Command): void => {
 				{ option: 'files', value: filesPath },
 			];
 
-			void writeConfigOptions({ options, serviceDir });
+			void writeConfigOptions({
+				options,
+				serviceDir,
+				logger,
+			});
 		});
 };

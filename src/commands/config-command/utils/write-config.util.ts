@@ -1,12 +1,18 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import type { ConfigOptionKey } from 'src/commands/config-command/types/config-option.type';
+import type { ConfigOptionKey } from 'commands/config-command/types/config-option.type';
 import { CONFIG_FILE_NAME } from './constants/config-file-name.const.js';
+import { ILogger } from '../../../types/logger.interface';
 
-export const writeConfig = async (
-	serviceDir: string,
-	content: Record<ConfigOptionKey, string>,
-): Promise<void> => {
+export const writeConfig = async ({
+	serviceDir,
+	logger,
+	newConfig,
+}: {
+	serviceDir: string;
+	newConfig: Record<ConfigOptionKey, string>;
+	logger: ILogger;
+}): Promise<void> => {
 	const configFilePath = path.resolve(
 		process.cwd(),
 		serviceDir,
@@ -14,9 +20,8 @@ export const writeConfig = async (
 	);
 
 	void fs.promises
-		.writeFile(configFilePath, JSON.stringify(content, null, 2), 'utf-8')
+		.writeFile(configFilePath, JSON.stringify(newConfig, null, 2), 'utf-8')
 		.catch((error) => {
-			// todo: add logger
-			console.error('Failed to write config file', error);
+			logger.errorNotify(['Failed to write config file', error.message]);
 		});
 };

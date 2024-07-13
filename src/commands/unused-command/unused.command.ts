@@ -1,14 +1,19 @@
 import { Command } from 'commander';
+import { ILogger } from '../../types/logger.interface';
 
-export const registerUnusedCommand = (program: Command): void => {
+export const registerUnusedCommand = ({
+	program,
+	logger,
+}: {
+	program: Command;
+	logger: ILogger;
+}): void => {
 	program
 		.command('unused')
 		.description('Find unused assets')
-		.option('-a, --assets <string>', 'Assets directory path', 'src/assets/')
-		.option('-f, --files <string>', 'Project files directory path', 'src/')
+		.option('-a, --assets <string>', 'Assets directory path')
+		.option('-f, --files <string>', 'Project files directory path')
 		.action((args) => {
-			const options = program.opts();
-			console.log('options', options);
 			console.log('args', args);
 		});
 };
