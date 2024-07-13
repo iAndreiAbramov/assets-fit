@@ -1,6 +1,6 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import type { ConfigOptionKey } from '../types/config-option.type';
+import type { ConfigOptionKey } from 'src/commands/config-command/types/config-option.type';
 import { CONFIG_FILE_NAME } from './constants/config-file-name.const.js';
 
 export const writeConfig = async (

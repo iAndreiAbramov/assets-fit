@@ -1,4 +1,4 @@
-import type { IConfigOption } from '../types/config-option.interface';
+import type { IConfigOption } from 'src/commands/config-command/types/config-option.interface';
 import { readOrCreateConfig } from './read-or-create-config.util.js';
 import { writeConfig } from './write-config.util.js';
 

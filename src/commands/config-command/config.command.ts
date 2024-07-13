@@ -19,6 +19,6 @@ export const registerConfigCommand = (program: Command): void => {
 				{ option: 'files', value: filesPath },
 			];
 
-			writeConfigOptions({ options, serviceDir });
+			void writeConfigOptions({ options, serviceDir });
 		});
 };
