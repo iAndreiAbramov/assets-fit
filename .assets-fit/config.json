@@ -1,4 +1,4 @@
 {
-  "assets": "test-data/test-assets",
-  "files": "src/files"
+  "assets": "test-data/test-assets/",
+  "files": "test-data/test-files/"
 }
