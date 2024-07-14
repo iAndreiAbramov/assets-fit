@@ -1,7 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import type { ConfigOptionKey } from 'commands/config-command/types/config-option.type';
-import { CONFIG_FILE_NAME } from './constants/config-file-name.const.js';
+import { CONFIG_FILE_NAME } from '../../constants/config-file-name.const.js';
 import { ILogger } from '../../../types/logger.interface';
 
 export const writeConfig = async ({

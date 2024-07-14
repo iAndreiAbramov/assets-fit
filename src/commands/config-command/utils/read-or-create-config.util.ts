@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { CONFIG_FILE_NAME } from './constants/config-file-name.const.js';
+import { CONFIG_FILE_NAME } from '../../constants/config-file-name.const.js';
 import { ILogger } from '../../../types/logger.interface';
 
 export const readOrCreateConfig = async ({

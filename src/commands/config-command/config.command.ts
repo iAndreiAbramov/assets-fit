@@ -14,6 +14,7 @@ export const registerConfigCommand = ({
 	program
 		.command('config')
 		.description('Set configuration options')
+		.alias('c')
 		.option('-a, --assets <string>', 'Assets directory path')
 		.option('-f, --files <string>', 'Project files directory path')
 		.action((args) => {
