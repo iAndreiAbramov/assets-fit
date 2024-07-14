@@ -1,1 +1,1 @@
-export const SERVICE_DIR = '.awr';
+export const SERVICE_DIR = '.assets-fit';
