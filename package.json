@@ -1,19 +1,21 @@
 {
-  "name": "assets-manager",
+  "name": "assets-fit",
   "type": "module",
   "version": "0.0.0",
-  "description": "An util for managing assets in react.js projects",
+  "description": "An util for reducing assets weight",
   "main": "index.js",
+  "bin": {
+    "af": "dist/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc -p tsconfig.json",
-    "exec": "npm run compile && node dist/index.js"
+    "compile": "tsc -p tsconfig.json"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.10",
-    "eslint": "^9.6.0",
+    "eslint": "8.57.0",
     "prettier": "^3.3.2",
     "typescript": "^5.5.3"
   },
