@@ -4,6 +4,7 @@ import { getDirectoriesFromConfig } from './utils/get-directories-from-config.ut
 import { getFilesList } from './utils/get-files-list.util.js';
 import { getImportedPathsFromFileList } from './utils/get-imported-paths-from-file-list.util.js';
 import { getUnusedAssetsList } from './utils/get-unused-paths-list.util.js';
+import { isInChecklist } from './utils/is-in-checklist.util.js';
 
 export const registerUnusedCommand = ({
 	program,
@@ -27,17 +28,14 @@ export const registerUnusedCommand = ({
 			const filesDir = filesDirFromArgs || filesDirFromConfig;
 			const assetsDir = assetsDirFromArgs || assetsDirFromConfig;
 			const assetsList = getFilesList(assetsDir);
-			// console.log('assetsList', assetsList);
 
-			const filesList = getFilesList(filesDir);
-			// console.log('filesList', filesList);
+			const filesList = getFilesList(filesDir).filter(isInChecklist);
 
 			const importedPaths = getImportedPathsFromFileList(filesList);
-			// console.log('importedPaths', importedPaths);
 
 			const unusedAssetsList = getUnusedAssetsList({
 				assetsList,
-				importedPathsList: importedPaths,
+				importedPaths,
 			});
 			console.log('unusedAssetsList', unusedAssetsList);
 		});

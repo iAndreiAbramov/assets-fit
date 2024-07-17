@@ -1,9 +1,13 @@
+import { checkForMatch } from './check-for-match.util.js';
+
 export const getUnusedAssetsList = ({
 	assetsList,
-	importedPathsList,
+	importedPaths,
 }: {
 	assetsList: string[];
-	importedPathsList: string[];
+	importedPaths: string[];
 }): string[] => {
-	return assetsList.filter((filePath) => !importedPathsList.includes(filePath));
+	return assetsList.filter((assetPath) => {
+		return !checkForMatch({assetPath, importedPaths})
+	});
 };

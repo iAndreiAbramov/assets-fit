@@ -1,15 +1,21 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const FILE_PATH_REGEXP = /([./\w-]+(?:\.\w+)?\/[\w-]+(?:\.\w+)?)/gi;
+const FILE_PATH_REGEXP = /(?<=['"`])[\w\S]+(\/[\w\S]+)+(?=['"`])/gi;
 
-export const getImportedPathsFromFile = (filePath: string): string[] => {
-	const fileContent = fs.readFileSync(filePath, 'utf-8');
-	const paths = fileContent.match(FILE_PATH_REGEXP);
-	if (!paths) {
-		return [];
+export const getImportedPathsFromFile = (filePath: string | undefined): string[] | undefined => {
+	if (!filePath) {
+		return;
 	}
-	return paths.map((filePath) =>
-		path.resolve(path.dirname(filePath), path.basename(filePath)),
+
+	const fileContent = fs.readFileSync(filePath, 'utf-8');
+	const importedPaths = fileContent.match(FILE_PATH_REGEXP);
+
+	if (!importedPaths) {
+		return;
+	}
+
+	return importedPaths.map((importedPath) =>
+		path.normalize(importedPath),
 	);
 };

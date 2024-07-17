@@ -1,9 +1,9 @@
 {
   "name": "assets-fit",
-  "type": "module",
   "version": "0.0.0",
-  "description": "An util for reducing assets weight",
+  "description": "A CLI tool for reducing assets weight",
   "main": "index.js",
+  "type": "module",
   "bin": {
     "af": "dist/index.js"
   },
@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc -p tsconfig.json"
   },
-  "author": "",
+  "author": "Andrey Abramov",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.10",
