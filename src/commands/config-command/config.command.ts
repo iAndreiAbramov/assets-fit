@@ -2,7 +2,8 @@ import { Command } from 'commander';
 import { getOrCreateServiceDir } from './utils/create-service-dir-if-not-exists.util.js';
 import { writeConfigOptions } from './utils/write-config-option.util.js';
 import type { IConfigOption } from './types/config-option.interface';
-import { ILogger } from '../../types/logger.interface';
+import { ILogger } from 'types/logger.interface';
+import path from 'node:path';
 
 export const registerConfigCommand = ({
 	program,
@@ -14,6 +15,7 @@ export const registerConfigCommand = ({
 	program
 		.command('config')
 		.description('Set configuration options')
+		.alias('c')
 		.option('-a, --assets <string>', 'Assets directory path')
 		.option('-f, --files <string>', 'Project files directory path')
 		.action((args) => {
@@ -22,8 +24,8 @@ export const registerConfigCommand = ({
 
 			const serviceDir = getOrCreateServiceDir();
 			const options: IConfigOption[] = [
-				{ option: 'assets', value: assetsPath },
-				{ option: 'files', value: filesPath },
+				{ option: 'assets', value: path.resolve(assetsPath) },
+				{ option: 'files', value: path.resolve(filesPath) },
 			];
 
 			void writeConfigOptions({

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { SERVICE_DIR } from './constants/service-dir.const.js';
+import { SERVICE_DIR } from '../../constants/service-dir.const.js';
 
 export const getOrCreateServiceDir = (): string | undefined => {
 	const serviceDir = path.join(process.cwd(), SERVICE_DIR);
