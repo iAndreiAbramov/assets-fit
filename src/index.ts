@@ -10,7 +10,7 @@ const logger = new LoggerService();
 const program = new Command();
 program
 	.version(getVersion(), '-v, --version', 'Outputs the current version')
-	.description('A CLI tool for managing static assets');
+	.description('A CLI tool for shrinking total project assets size');
 
 registerConfigCommand({ program, logger });
 registerUnusedCommand({ program, logger });

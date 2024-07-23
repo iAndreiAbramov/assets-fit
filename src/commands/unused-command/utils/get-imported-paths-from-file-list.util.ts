@@ -1,6 +1,6 @@
 import { getImportedPathsFromFile } from './get-imported-paths-from-file.util.js';
-import fs from 'node:fs';
 import { getFilesList } from './get-files-list.util.js';
+import fs from 'node:fs';
 
 export const getImportedPathsFromFileList = (filesList: string[]): string[] => {
 	const importedPaths: string[] = [];
@@ -16,5 +16,6 @@ export const getImportedPathsFromFileList = (filesList: string[]): string[] => {
 			}
 		}
 	});
+
 	return importedPaths;
 };
