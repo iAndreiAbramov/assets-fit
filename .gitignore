@@ -14,5 +14,5 @@ coverage
 *.log
 *.env
 
-/.assets-fit/
 /test-data/
+.af-config.json

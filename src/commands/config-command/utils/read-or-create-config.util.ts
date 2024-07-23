@@ -3,15 +3,13 @@ import path from 'node:path';
 import { CONFIG_FILE_NAME } from '../../constants/config-file-name.const.js';
 import { ILogger } from '../../../types/logger.interface';
 
-export const readOrCreateConfig = async ({
-	serviceDir,
+export const readOrCreateConfigFile = async ({
+	configFilePath,
 	logger,
 }: {
-	serviceDir: string;
+	configFilePath: string;
 	logger: ILogger;
 }): Promise<Record<string, string>> => {
-	const configFilePath = path.join(serviceDir, CONFIG_FILE_NAME);
-
 	let fileData = {};
 
 	if (!fs.existsSync(configFilePath)) {
@@ -33,7 +31,7 @@ export const readOrCreateConfig = async ({
 			return JSON.parse(data);
 		})
 		.catch((error) => {
-			logger.errorNotify(['Failed to read config file', error.message]);
+			logger.notifyError(['Failed to read config file', error.message]);
 			return fileData;
 		});
 };

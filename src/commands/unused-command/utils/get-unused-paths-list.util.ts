@@ -8,6 +8,6 @@ export const getUnusedAssetsList = ({
 	importedPaths: string[];
 }): string[] => {
 	return assetsList.filter((assetPath) => {
-		return !checkForMatch({assetPath, importedPaths})
+		return !checkForMatch({ assetPath, importedPaths });
 	});
 };

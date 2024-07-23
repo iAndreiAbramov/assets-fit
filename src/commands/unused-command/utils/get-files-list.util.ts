@@ -15,7 +15,5 @@ export const getFilesList = (directory: string): string[] => {
 		}
 	});
 
-	return filesList.map((filePath) =>
-		path.resolve(process.cwd(), filePath),
-	);
+	return filesList.map((filePath) => path.resolve(process.cwd(), filePath));
 };

@@ -1,23 +1,31 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import type { IConfigOption } from 'commands/config-command/types/config-option.interface';
-import { readOrCreateConfig } from './read-or-create-config.util.js';
+import type { ILogger } from '../../../types/logger.interface';
+
 import { writeConfig } from './write-config.util.js';
-import { ILogger } from '../../../types/logger.interface';
+import { CONFIG_FILE_NAME } from '../../constants/config-file-name.const.js';
+import { readConfigFromFile } from '../../../utils/read-config-from-file.js';
 
 export const writeConfigOptions = async ({
 	options,
-	serviceDir,
 	logger,
 }: {
 	options: IConfigOption[];
-	serviceDir: string | undefined;
 	logger: ILogger;
 }): Promise<void> => {
-	if (!serviceDir) {
-		logger.errorNotify('Service directory does not exist');
+	const configFilePath = path.resolve(process.cwd(), CONFIG_FILE_NAME);
+
+	if (!fs.existsSync(configFilePath)) {
+		logger.notifyError([
+			'Config file does not exist.',
+			'Create a ".af-config.json" file in the root of your project.',
+		]);
 		return;
 	}
 
-	const config = await readOrCreateConfig({ serviceDir, logger });
+	const config = readConfigFromFile({ configFilePath });
 	const newConfig = Object.assign(
 		config,
 		...options
@@ -25,5 +33,5 @@ export const writeConfigOptions = async ({
 			.map(({ option, value }) => ({ [option]: value })),
 	);
 
-	void writeConfig({ serviceDir, newConfig, logger });
+	void writeConfig({ configFilePath, newConfig, logger });
 };

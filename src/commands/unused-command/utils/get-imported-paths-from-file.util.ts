@@ -3,7 +3,9 @@ import path from 'node:path';
 
 const FILE_PATH_REGEXP = /(?<=['"`])[\w\S]+(\/[\w\S]+)+(?=['"`])/gi;
 
-export const getImportedPathsFromFile = (filePath: string | undefined): string[] | undefined => {
+export const getImportedPathsFromFile = (
+	filePath: string | undefined,
+): string[] | undefined => {
 	if (!filePath) {
 		return;
 	}
@@ -15,7 +17,5 @@ export const getImportedPathsFromFile = (filePath: string | undefined): string[]
 		return;
 	}
 
-	return importedPaths.map((importedPath) =>
-		path.normalize(importedPath),
-	);
+	return importedPaths.map((importedPath) => path.normalize(importedPath));
 };

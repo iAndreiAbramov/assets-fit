@@ -1,5 +1,5 @@
 export interface ILogger {
-	messageNotify(message: string | string[]): void;
-	warnNotify(message: string | string[]): void;
-	errorNotify(message: string | string[]): void;
+	notifyInfo(message: string | string[]): void;
+	notifyWarning(message: string | string[]): void;
+	notifyError(message: string | string[]): void;
 }
