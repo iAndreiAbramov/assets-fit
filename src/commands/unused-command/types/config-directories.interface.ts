@@ -1,4 +1,6 @@
 export interface IConfigDirectories {
-	filesDirFromConfig: string | null;
-	assetsDirFromConfig: string | null;
+	filesIncluded: string[];
+	filesExcluded: string[];
+	assetsIncluded: string[];
+	assetsExcluded: string[];
 }

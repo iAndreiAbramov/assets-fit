@@ -18,25 +18,28 @@ export const registerUnusedCommand = ({
 		.command('unused')
 		.description('Find unused assets')
 		.alias('u')
-		.option('-a, --assets <string>', 'Assets directory path')
-		.option('-f, --files <string>', 'Project files directory path')
-		.addHelpText(
-			'after',
-			'\nAssets and files directories optionally can be set by "config" command, or by editing ".af-config.json" file',
-		)
-		.action((args) => {
-			const filesDirFromArgs = args.files;
-			const assetsDirFromArgs = args.assets;
-			const { filesDirFromConfig, assetsDirFromConfig } =
-				getDirectoriesFromConfig({ logger });
+		.action(() => {
+			const { filesIncluded, assetsIncluded, filesExcluded, assetsExcluded } =
+				getDirectoriesFromConfig({
+					logger,
+				});
 
-			const filesDir = filesDirFromArgs || filesDirFromConfig;
-			const assetsDir = assetsDirFromArgs || assetsDirFromConfig;
+			validateDirectories({
+				assetsDirs: assetsIncluded,
+				filesDirs: filesIncluded,
+				logger,
+				program,
+			});
 
-			validateDirectories({ assetsDir, filesDir, logger, program });
+			const assetsList = getFilesList({
+				includedDirs: assetsIncluded,
+				excludedDirs: assetsExcluded,
+			});
 
-			const assetsList = getFilesList(assetsDir);
-			const filesList = getFilesList(filesDir).filter(isInChecklist);
+			const filesList = getFilesList({
+				includedDirs: filesIncluded,
+				excludedDirs: filesExcluded,
+			}).filter(isInChecklist);
 
 			const importedPaths = getImportedPathsFromFileList(filesList);
 

@@ -16,3 +16,4 @@ coverage
 
 /test-data/
 .af-config.json
+.af.json

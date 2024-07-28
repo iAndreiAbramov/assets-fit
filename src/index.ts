@@ -2,9 +2,9 @@
 
 import { Command } from 'commander';
 import { getVersion } from './utils/get-version.js';
-import { registerConfigCommand } from './commands/config-command/config.command.js';
 import { registerUnusedCommand } from './commands/unused-command/unused.command.js';
 import { LoggerService } from './services/logger/logger.service.js';
+import { registerInitCommand } from './commands/init-command/init.command.js';
 
 const logger = new LoggerService();
 const program = new Command();
@@ -12,7 +12,7 @@ program
 	.version(getVersion(), '-v, --version', 'Outputs the current version')
 	.description('A CLI tool for shrinking total project assets size');
 
-registerConfigCommand({ program, logger });
+registerInitCommand({ program, logger });
 registerUnusedCommand({ program, logger });
 
 program.parse(process.argv);

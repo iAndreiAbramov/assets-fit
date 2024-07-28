@@ -1,6 +1,6 @@
 {
   "name": "assets-fit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A CLI tool for reducing assets weight",
   "main": "index.js",
   "files": ["dist", "Readme.md"],
@@ -13,6 +13,7 @@
     "compile": "tsc -p tsconfig.json"
   },
   "author": "Andrey Abramov",
+  "homepage": "https://github.com/iAndreiAbramov/assets-fit",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.10",

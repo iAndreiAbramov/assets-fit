@@ -1,1 +1,1 @@
-export const CONFIG_FILE_NAME = '.af-config.json';
+export const CONFIG_FILE_NAME = '.af.json';

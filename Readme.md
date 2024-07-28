@@ -9,8 +9,7 @@ images that could be compressed, etc., and provides options to manage them effic
 ## Features
 
 - **Scan for Unused Assets**: Quickly identify unused assets in your project.
-- **Flexible Configuration**: Configure assets and files directories through CLI arguments, a configuration file, or
-  the `config` command.
+- **Flexible Configuration**: Configure assets and files directories through a configuration file.
 - **Easy to Use**: Simple commands and clear output make it easy to manage your assets.
 
 ## Installation
@@ -23,58 +22,56 @@ npm i -D assets-fit
 
 This will install the `af` command to your project.
 
+## Configuration
+
+Assets-Fit can be configured using a configuration file 
+`.af.json`
+that can be created manually or using the `init` command:
+
+```bash
+af init
+```
+
+This will create a `.af.json` file in the root of your project.
+
+Here is an example of a configuration file:
+
+```json
+{
+  "assets": {
+    "include": "src/assets/",
+    "exclude": [".DS_Store", "src/assets/fonts"]
+  },
+  "files": {
+    "include": ["src/"],
+    "exclude": "src/assets"
+  }
+}
+```
+
 ## Usage
 
 To scan your project for unused assets, run the following command:
 
 ```bash
-af unused --assets <path-to-assets> --files <path-to-files>
+af unused
 ```
 
-or with short flags:
+or with short variant:
 
 ```bash
-af u -a <path-to-assets> -f <path-to-files>
+af u
 ```
 
-**Options**
-
-- `-a, --assets <string>`: Specify the path to the assets directory.
-- `-f, --files <string>`: Specify the path to the project files directory.
-- `--help`: Display help for the command.
-
-## Configuration
-
-It can be a little bit annoying to specify the assets and files directories every time you run the command.
-To make it easier, you can configure the directories once and then run the command without specifying it.
-
-The first step to configure _Assets-Fit_ is to manually create a ".af-config.json" file in the project root directory.
-This file will contain the configuration for the program.
-
-Configuration can be set by using "config" command or by editing the ".af-config.json" file.
-
-To set the assets and files directories using the config command, run the following command:
-
-```bash
-af config --assets <path-to-assets> --files <path-to-files>
-```
-
-or with short flags:
-
-```bash
-af c -a <path-to-assets> -f <path-to-files>
-```
-
-To set the assets and files directories by editing the .af-config.json file, add the following configuration:
-
-```json
-{
-  "assets": "<path-to-assets>",
-  "files": "<path-to-files>"
-}
-```
-
-Both paths can be relative to the project root directory or absolute.
+Running this command will scan directories specified in the
+`files.include`
+configuration option, excluding directories specified in the
+`files.exclude`
+option, and will search for imports or usage of assets from directories specified in the
+`assets.include`
+configuration option, excluding directories specified in the
+`assets.exclude`
+option.
 
 ## Contributing
 
