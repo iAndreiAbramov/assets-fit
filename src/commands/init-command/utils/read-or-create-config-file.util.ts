@@ -13,10 +13,14 @@ export const readOrCreateConfigFile = ({
 
 	try {
 		if (!fs.existsSync(configFilePath)) {
-			fs.writeFileSync(configFilePath, JSON.stringify(DEFAULT_CONFIG), {
-				mode: 0o777,
-				encoding: 'utf-8',
-			});
+			fs.writeFileSync(
+				configFilePath,
+				JSON.stringify(DEFAULT_CONFIG, null, 2),
+				{
+					mode: 0o777,
+					encoding: 'utf-8',
+				},
+			);
 			logger.notifyInfo('Config file created');
 		} else {
 			logger.notifyWarning('Config file already exists');
