@@ -24,23 +24,20 @@ export const registerUnusedCommand = ({
 					logger,
 				});
 
-			const filesDirs = filesIncluded;
-			const assetsDirs = assetsIncluded;
-
 			validateDirectories({
-				assetsDirs: assetsDirs,
-				filesDirs: filesDirs,
+				assetsDirs: assetsIncluded,
+				filesDirs: filesIncluded,
 				logger,
 				program,
 			});
 
 			const assetsList = getFilesList({
-				includedDirs: assetsDirs,
+				includedDirs: assetsIncluded,
 				excludedDirs: assetsExcluded,
 			});
 
 			const filesList = getFilesList({
-				includedDirs: filesDirs,
+				includedDirs: filesIncluded,
 				excludedDirs: filesExcluded,
 			}).filter(isInChecklist);
 
