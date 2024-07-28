@@ -24,19 +24,22 @@ export const registerUnusedCommand = ({
 			'after',
 			'\nAssets and files directories optionally can be set by "config" command, or by editing ".af-config.json" file',
 		)
-		.action((args) => {
-			const filesDirFromArgs = args.files;
-			const assetsDirFromArgs = args.assets;
-			const { filesDirFromConfig, assetsDirFromConfig } =
+		.action(() => {
+			const { filesDirsFromConfig, assetsDirsFromConfig } =
 				getDirectoriesFromConfig({ logger });
 
-			const filesDir = filesDirFromArgs || filesDirFromConfig;
-			const assetsDir = assetsDirFromArgs || assetsDirFromConfig;
+			const filesDirs = filesDirsFromConfig;
+			const assetsDirs = assetsDirsFromConfig;
 
-			validateDirectories({ assetsDir, filesDir, logger, program });
+			validateDirectories({
+				assetsDirs: assetsDirs,
+				filesDirs: filesDirs,
+				logger,
+				program,
+			});
 
-			const assetsList = getFilesList(assetsDir);
-			const filesList = getFilesList(filesDir).filter(isInChecklist);
+			const assetsList = getFilesList(assetsDirs);
+			const filesList = getFilesList(filesDirs).filter(isInChecklist);
 
 			const importedPaths = getImportedPathsFromFileList(filesList);
 

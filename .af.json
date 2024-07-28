@@ -1,7 +1,7 @@
 {
   "assets": {
     "include": [
-      "assets/"
+      "test-data/src/assets/"
     ],
     "exclude": [
       ".DS_Store"
@@ -9,7 +9,7 @@
   },
   "files": {
     "include": [
-      "src/"
+      "test-data/src/"
     ],
     "exclude": [
       "node_modules"

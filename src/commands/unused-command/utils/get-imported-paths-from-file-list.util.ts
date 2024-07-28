@@ -7,7 +7,7 @@ export const getImportedPathsFromFileList = (filesList: string[]): string[] => {
 	filesList.forEach((filePath) => {
 		const stats = fs.statSync(filePath);
 		if (stats.isDirectory()) {
-			const nestedFilesList = getFilesList(filePath);
+			const nestedFilesList = getFilesList([filePath]);
 			importedPaths.push(...getImportedPathsFromFileList(nestedFilesList));
 		} else if (stats.isFile()) {
 			const pathsFromFile = getImportedPathsFromFile(filePath);

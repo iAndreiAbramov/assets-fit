@@ -2,8 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ILogger } from '../../../types/logger.interface';
 import { DEFAULT_CONFIG } from '../constants/default-config.js';
-
-const CONFIG_FILE_NAME = '.af.json';
+import { CONFIG_FILE_NAME } from '../../constants/config-file-name.const.js';
 
 export const readOrCreateConfigFile = ({
 	logger,
