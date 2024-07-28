@@ -18,18 +18,14 @@ export const registerUnusedCommand = ({
 		.command('unused')
 		.description('Find unused assets')
 		.alias('u')
-		.option('-a, --assets <string>', 'Assets directory path')
-		.option('-f, --files <string>', 'Project files directory path')
-		.addHelpText(
-			'after',
-			'\nAssets and files directories optionally can be set by "config" command, or by editing ".af-config.json" file',
-		)
 		.action(() => {
-			const { filesDirsFromConfig, assetsDirsFromConfig } =
-				getDirectoriesFromConfig({ logger });
+			const { filesIncluded, assetsIncluded, filesExcluded, assetsExcluded } =
+				getDirectoriesFromConfig({
+					logger,
+				});
 
-			const filesDirs = filesDirsFromConfig;
-			const assetsDirs = assetsDirsFromConfig;
+			const filesDirs = filesIncluded;
+			const assetsDirs = assetsIncluded;
 
 			validateDirectories({
 				assetsDirs: assetsDirs,
@@ -38,8 +34,15 @@ export const registerUnusedCommand = ({
 				program,
 			});
 
-			const assetsList = getFilesList(assetsDirs);
-			const filesList = getFilesList(filesDirs).filter(isInChecklist);
+			const assetsList = getFilesList({
+				includedDirs: assetsDirs,
+				excludedDirs: assetsExcluded,
+			});
+
+			const filesList = getFilesList({
+				includedDirs: filesDirs,
+				excludedDirs: filesExcluded,
+			}).filter(isInChecklist);
 
 			const importedPaths = getImportedPathsFromFileList(filesList);
 

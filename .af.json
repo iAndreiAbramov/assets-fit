@@ -1,10 +1,11 @@
 {
   "assets": {
     "include": [
-      "test-data/src/assets/"
+      "test-data/src/assets"
     ],
     "exclude": [
-      ".DS_Store"
+      ".DS_Store",
+      "test-data/src/assets/icons"
     ]
   },
   "files": {
@@ -12,7 +13,9 @@
       "test-data/src/"
     ],
     "exclude": [
-      "node_modules"
+      "node_modules",
+      ".DS_Store",
+      "test-data/src/assets"
     ]
   }
 }
