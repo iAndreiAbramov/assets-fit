@@ -1,0 +1,18 @@
+{
+  "assets": {
+    "include": [
+      "assets/"
+    ],
+    "exclude": [
+      ".DS_Store"
+    ]
+  },
+  "files": {
+    "include": [
+      "src/"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }
+}
