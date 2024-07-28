@@ -12,7 +12,7 @@ export const getDirectoriesFromConfig = ({
 }: {
 	logger: ILogger;
 }): IConfigDirectories => {
-	const result: IConfigDirectories = {
+	let result: IConfigDirectories = {
 		filesIncluded: [],
 		filesExcluded: [],
 		assetsIncluded: [],
@@ -24,10 +24,25 @@ export const getDirectoriesFromConfig = ({
 		const configFileContent = fs.readFileSync(configFilePath, 'utf-8');
 		const config: IConfig = JSON.parse(configFileContent);
 
-		result.filesIncluded = config?.files?.include || [];
-		result.filesExcluded = config?.files?.exclude || [];
-		result.assetsIncluded = config?.assets?.include || [];
-		result.assetsExcluded = config?.assets?.exclude || [];
+		const includedFiles = config?.files?.include || [];
+		const excludedFiles = config?.files?.exclude || [];
+		const includedAssets = config?.assets?.include || [];
+		const excludedAssets = config?.assets?.exclude || [];
+
+		result = {
+			assetsIncluded: Array.isArray(includedAssets)
+				? includedAssets
+				: [includedAssets],
+			assetsExcluded: Array.isArray(excludedAssets)
+				? excludedAssets
+				: [excludedAssets],
+			filesIncluded: Array.isArray(includedFiles)
+				? includedFiles
+				: [includedFiles],
+			filesExcluded: Array.isArray(excludedFiles)
+				? excludedFiles
+				: [excludedFiles],
+		};
 
 		return result;
 	} catch {
