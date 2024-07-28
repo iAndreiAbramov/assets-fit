@@ -13,6 +13,7 @@
     "compile": "tsc -p tsconfig.json"
   },
   "author": "Andrey Abramov",
+  "homepage": "https://github.com/iAndreiAbramov/assets-fit",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.10",
