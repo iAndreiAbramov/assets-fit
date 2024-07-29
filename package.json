@@ -1,6 +1,6 @@
 {
   "name": "assets-fit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A CLI tool for reducing assets weight",
   "main": "index.js",
   "files": ["dist", "Readme.md"],
