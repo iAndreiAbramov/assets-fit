@@ -81,13 +81,13 @@ option.
 **To scan your project for duplicate assets**, run the following command:
 
 ```bash
-  af duplicate
+af duplicate
 ``` 
 
 or with short variant:
 
 ```bash
-  af d
+af d
 ```
 
 `duplicate` command will compare all files by content and will output all duplicates, which may have different names.
