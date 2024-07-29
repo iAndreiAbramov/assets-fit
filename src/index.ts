@@ -5,6 +5,7 @@ import { getVersion } from './utils/get-version.js';
 import { registerUnusedCommand } from './commands/unused-command/unused.command.js';
 import { LoggerService } from './services/logger/logger.service.js';
 import { registerInitCommand } from './commands/init-command/init.command.js';
+import { registerDuplicatesCommand } from './commands/duplicate/duplicate.command.js';
 
 const logger = new LoggerService();
 const program = new Command();
@@ -14,6 +15,7 @@ program
 
 registerInitCommand({ program, logger });
 registerUnusedCommand({ program, logger });
+registerDuplicatesCommand({ program, logger });
 
 program.parse(process.argv);
 

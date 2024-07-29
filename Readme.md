@@ -24,7 +24,7 @@ This will install the `af` command to your project.
 
 ## Configuration
 
-Assets-Fit can be configured using a configuration file 
+Assets-Fit can be configured using a configuration file
 `.af.json`
 that can be created manually or using the `init` command:
 
@@ -40,10 +40,15 @@ Here is an example of a configuration file:
 {
   "assets": {
     "include": "src/assets/",
-    "exclude": [".DS_Store", "src/assets/fonts"]
+    "exclude": [
+      ".DS_Store",
+      "src/assets/fonts"
+    ]
   },
   "files": {
-    "include": ["src/"],
+    "include": [
+      "src/"
+    ],
     "exclude": "src/assets"
   }
 }
@@ -51,7 +56,7 @@ Here is an example of a configuration file:
 
 ## Usage
 
-To scan your project for unused assets, run the following command:
+**To scan your project for unused assets**, run the following command:
 
 ```bash
 af unused
@@ -63,11 +68,32 @@ or with short variant:
 af u
 ```
 
-Running this command will scan directories specified in the
+Running this command will recursively scan directories specified in the
 `files.include`
 configuration option, excluding directories specified in the
 `files.exclude`
 option, and will search for imports or usage of assets from directories specified in the
+`assets.include`
+configuration option, excluding directories specified in the
+`assets.exclude`
+option.
+
+**To scan your project for duplicate assets**, run the following command:
+
+```bash
+af duplicate
+``` 
+
+or with short variant:
+
+```bash
+af d
+```
+
+`duplicate` command will compare all files by content and will output all duplicates, which may have different names.
+It can be useful to find images that were imported multiple times under different names.
+
+Running this command will recursively scan directories specified in the
 `assets.include`
 configuration option, excluding directories specified in the
 `assets.exclude`
