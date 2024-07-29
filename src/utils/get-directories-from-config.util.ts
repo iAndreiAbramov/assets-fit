@@ -1,11 +1,11 @@
 import path from 'node:path';
 import fs from 'node:fs';
 
-import type { ILogger } from '../../../types/logger.interface';
-import type { IConfigDirectories } from '../types/config-directories.interface';
+import type { ILogger } from '../types/logger.interface';
+import type { IConfigDirectories } from '../commands/unused-command/types/config-directories.interface';
+import type { IConfig } from '../types/config.interface';
 
-import { CONFIG_FILE_NAME } from '../../constants/config-file-name.const.js';
-import type { IConfig } from '../../../types/config.interface';
+import { CONFIG_FILE_NAME } from '../commands/constants/config-file-name.const.js';
 
 export const getDirectoriesFromConfig = ({
 	logger,
