@@ -1,11 +1,17 @@
+/**
+ * Check if the asset path ends with any of the usage paths
+ * Which means the asset is used in the usage path
+ * @param assetPath
+ * @param importedPaths
+ */
 export const checkForMatch = ({
 	assetPath,
-	importedPaths,
+	usagePaths,
 }: {
 	assetPath: string;
-	importedPaths: string[];
+	usagePaths: string[];
 }) => {
-	return importedPaths.some((importPath) => {
-		return assetPath.endsWith(importPath);
+	return usagePaths.some((usagePath) => {
+		return assetPath.endsWith(usagePath);
 	});
 };

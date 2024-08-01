@@ -3,7 +3,12 @@ import path from 'node:path';
 
 const FILE_PATH_REGEXP = /(?<=['"`])[\w\S]+(\/[\w\S]+)+(?=['"`])/gi;
 
-export const getImportedPathsFromFile = (
+/**
+ * Get all usage paths from a file
+ * @param filePath The file to get the usage paths from
+ * @returns The list of usage paths or undefined if no paths found
+ */
+export const getUsagePathsFromFile = (
 	filePath: string | undefined,
 ): string[] | undefined => {
 	if (!filePath) {

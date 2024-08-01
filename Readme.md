@@ -3,8 +3,7 @@
 **Please note that this project is in the early development stage and may not work as expected.**
 
 _Assets-Fit_ is a CLI tool designed to help reduce the weight of assets in your project.
-It scans your project directories to find unused assets, duplicated files under different names,
-images that could be compressed, etc., and provides options to manage them efficiently.
+It scans your project directories to find unused assets and duplicated files under different names.
 
 ## Features
 

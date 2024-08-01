@@ -7,6 +7,11 @@ import type { IConfig } from '../types/config.interface';
 
 import { CONFIG_FILE_NAME } from '../commands/constants/config-file-name.const.js';
 
+/**
+ * Get the directories to work with from the config file
+ * @param logger The logger service
+ * @returns The directories from the config file
+ */
 export const getDirectoriesFromConfig = ({
 	logger,
 }: {

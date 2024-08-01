@@ -4,6 +4,12 @@ import path from 'node:path';
 import type { ILogger } from '../types/logger.interface';
 import { Command } from 'commander';
 
+/**
+ * Validate if the assets directories provided and exist
+ * @param assetsDirs The assets directories
+ * @param logger The logger service
+ * @param program The commander program
+ */
 export const validateAssetsDirectories = ({
 	assetsDirs,
 	logger,

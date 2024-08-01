@@ -1,8 +1,13 @@
 import fs from 'node:fs';
-import { getImportedPathsFromFile } from './get-imported-paths-from-file.util.js';
+import { getUsagePathsFromFile } from './get-usage-paths-from-file.util.js';
 import { getFilesList } from '../../../utils/get-files-list.util.js';
 
-export const getImportedPathsFromFileList = (filesList: string[]): string[] => {
+/**
+ * Get all usage paths from a list of files
+ * @param filesList The list of files to get the usage paths from
+ * @returns The list of usage paths
+ */
+export const getUsagePathsFromFileList = (filesList: string[]): string[] => {
 	const importedPaths: string[] = [];
 	filesList.forEach((filePath) => {
 		const stats = fs.statSync(filePath);
@@ -11,9 +16,9 @@ export const getImportedPathsFromFileList = (filesList: string[]): string[] => {
 				includedDirs: [filePath],
 				excludedDirs: [],
 			});
-			importedPaths.push(...getImportedPathsFromFileList(nestedFilesList));
+			importedPaths.push(...getUsagePathsFromFileList(nestedFilesList));
 		} else if (stats.isFile()) {
-			const pathsFromFile = getImportedPathsFromFile(filePath);
+			const pathsFromFile = getUsagePathsFromFile(filePath);
 			if (pathsFromFile?.length) {
 				importedPaths.push(...pathsFromFile);
 			}

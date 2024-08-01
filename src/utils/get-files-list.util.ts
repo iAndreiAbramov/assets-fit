@@ -2,6 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as process from 'node:process';
 
+/**
+ * Get a list of files from a list of directories recursively
+ * @param includedDirs The list of directories to get the files from
+ * @param excludedDirs The list of directories to exclude from the search
+ * @returns The list of files
+ */
 export const getFilesList = ({
 	includedDirs,
 	excludedDirs,
