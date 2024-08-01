@@ -4,7 +4,7 @@ import { getDirectoriesFromConfig } from '../../utils/get-directories-from-confi
 import { getFilesList } from '../../utils/get-files-list.util.js';
 import { getImportedPathsFromFileList } from './utils/get-imported-paths-from-file-list.util.js';
 import { getUnusedAssetsList } from './utils/get-unused-paths-list.util.js';
-import { isInChecklist } from './utils/is-in-checklist.util.js';
+import { shouldBeParsed } from './utils/is-in-checklist.util.js';
 import { validateFilesDirectories } from '../../utils/validate-files-directories.util.js';
 import { validateAssetsDirectories } from '../../utils/validate-assets-directories.util.js';
 
@@ -44,7 +44,7 @@ export const registerUnusedCommand = ({
 			const filesList = getFilesList({
 				includedDirs: filesIncluded,
 				excludedDirs: filesExcluded,
-			}).filter(isInChecklist);
+			}).filter(shouldBeParsed);
 
 			const importedPaths = getImportedPathsFromFileList(filesList);
 

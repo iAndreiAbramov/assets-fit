@@ -1,17 +1,22 @@
-const EXTENSIONS_CHECKLIST = [
-	'.ts',
-	'.tsx',
-	'.js',
-	'.jsx',
-	'.html',
-	'.css',
-	'.scss',
-	'.sass',
-	'.less',
-	'.vue',
+const BANNED_EXTENSIONS = [
+	'svg',
+	'png',
+	'bmp',
+	'jpg',
+	'jpeg',
+	'gif',
+	'webp',
+	'ico',
+	'tif',
+	'tiff',
+	'woff',
+	'woff2',
+	'eot',
+	'ttf',
+	'otf',
 ];
 
-export const isInChecklist = (filePath: string) => {
+export const shouldBeParsed = (filePath: string): boolean => {
 	const extension = filePath.split('.').pop();
-	return EXTENSIONS_CHECKLIST.includes(`.${extension}`);
+	return !extension || !BANNED_EXTENSIONS.includes(extension);
 };
