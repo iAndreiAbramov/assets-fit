@@ -3,6 +3,12 @@ import path from 'node:path';
 import { Command } from 'commander';
 import type { ILogger } from '../types/logger.interface';
 
+/**
+ * Validate if the files directories provided and exist
+ * @param filesDirs The files directories
+ * @param logger The logger service
+ * @param program The commander program
+ */
 export const validateFilesDirectories = ({
 	filesDirs,
 	logger,

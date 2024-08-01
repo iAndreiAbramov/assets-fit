@@ -1,5 +1,10 @@
 import { getFileHashWithStream } from './get-file-hash-with-stream.util.js';
 
+/**
+ * Get the list of duplicate files.
+ * @param filesList The list of files.
+ * @returns The list of duplicate files as an array of arrays.
+ */
 export const getDuplicateFiles = async (
 	filesList: string[],
 ): Promise<string[][]> => {

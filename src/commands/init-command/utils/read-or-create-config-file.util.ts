@@ -4,6 +4,11 @@ import { ILogger } from '../../../types/logger.interface';
 import { DEFAULT_CONFIG } from '../constants/default-config.js';
 import { CONFIG_FILE_NAME } from '../../constants/config-file-name.const.js';
 
+/**
+ * Reads config file or creates it if it doesn't exist.
+ * Fills it with default config if it's created.
+ * @param logger The logger service.
+ */
 export const readOrCreateConfigFile = ({
 	logger,
 }: {
