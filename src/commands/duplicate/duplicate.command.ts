@@ -16,7 +16,7 @@ export const registerDuplicatesCommand = ({
 		.command('duplicate')
 		.description('Find duplicate assets')
 		.alias('d')
-		.action(() => {
+		.action(async () => {
 			const { assetsIncluded, assetsExcluded } = getDirectoriesFromConfig({
 				logger,
 			});
@@ -32,7 +32,7 @@ export const registerDuplicatesCommand = ({
 				excludedDirs: assetsExcluded,
 			});
 
-			const duplicates = getDuplicateFiles(assetsList);
+			const duplicates = await getDuplicateFiles(assetsList);
 
 			logger.notifyInfo([
 				'Files that have similar content:',
