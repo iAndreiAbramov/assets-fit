@@ -16,10 +16,17 @@ export const getFilesList = ({
 	excludedDirs: string[];
 }): string[] => {
 	const filesList: string[] = [];
-	includedDirs.forEach((directory) => {
-		const elements = fs.readdirSync(directory);
+	includedDirs.forEach((directoryOrFile) => {
+		const isFile = fs.statSync(directoryOrFile).isFile();
+
+		if (isFile) {
+			filesList.push(directoryOrFile);
+			return;
+		}
+
+		const elements = fs.readdirSync(directoryOrFile);
 		elements.forEach((element) => {
-			const elementPath = path.join(directory, element);
+			const elementPath = path.join(directoryOrFile, element);
 			const stats = fs.statSync(elementPath);
 			if (stats.isDirectory()) {
 				filesList.push(
