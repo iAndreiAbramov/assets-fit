@@ -40,15 +40,14 @@ Here is an example of a configuration file:
   "assets": {
     "include": "src/assets/",
     "exclude": [
-      ".DS_Store",
-      "src/assets/fonts"
+      ".DS_Store"
     ]
   },
   "files": {
     "include": [
       "src/"
     ],
-    "exclude": "src/assets"
+    "exclude": "src/mocks"
   }
 }
 ```
