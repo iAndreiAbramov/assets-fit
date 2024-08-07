@@ -16,10 +16,10 @@ It scans your project directories to find unused assets and duplicated files und
 To install _Assets-Fit_, you need to have Node.js installed on your machine.
 
 ```bash
-npm i -D assets-fit
+npm i -g assets-fit
 ```
 
-This will install the `af` command to your project.
+This will install the `af` command to your system globally.
 
 ## Configuration
 
@@ -31,7 +31,10 @@ that can be created manually or using the `init` command:
 af init
 ```
 
-This will create a `.af.json` file in the root of your project.
+Please note, that the `init` command **should be run in the root of your project**.
+
+This will create a `.af.json` file with default values in the root of your project.
+Update the configuration file to match your project structure.
 
 Here is an example of a configuration file:
 
@@ -40,18 +43,29 @@ Here is an example of a configuration file:
   "assets": {
     "include": "src/assets/",
     "exclude": [
-      ".DS_Store",
-      "src/assets/fonts"
+      ".DS_Store"
     ]
   },
   "files": {
     "include": [
       "src/"
     ],
-    "exclude": "src/assets"
+    "exclude": "src/mocks"
   }
 }
 ```
+
+`assets.include` - a directory or directories where assets are stored.
+
+`assets.exclude` - a list of files or directories to exclude from the scan.
+
+`files.include` - a directory or directories with project files to scan for asset usage.
+
+`files.exclude` - a list of files or directories to exclude from the scan for asset usage.
+
+It is recommended to specify exactly the `assets.include` directories. And for the `files.include` directories, you may
+specify the root directory of your project or the `./src` directory, for example. It does not affect the performance too
+much.
 
 ## Usage
 

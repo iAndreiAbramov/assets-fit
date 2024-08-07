@@ -34,14 +34,15 @@ export const registerDuplicatesCommand = ({
 
 			const duplicates = await getDuplicateFiles(assetsList);
 
-			logger.notifyInfo([
-				'Files that have similar content:',
-				...duplicates.reduce((acc, files) => {
-					acc.push('--------------------------------');
-					acc.push(...files);
-
-					return acc;
-				}, []),
-			]);
+			duplicates.length > 0
+				? logger.notifyInfo([
+						'Files that have similar content:',
+						...duplicates.reduce((acc, files) => {
+							acc.push('--------------------------------');
+							acc.push(...files);
+							return acc;
+						}),
+					])
+				: logger.notifyInfo(['No duplicate assets found']);
 		});
 };

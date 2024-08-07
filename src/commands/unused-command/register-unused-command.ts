@@ -53,6 +53,8 @@ export const registerUnusedCommand = ({
 				usagePaths: importedPaths,
 			});
 
-			logger.notifyInfo(['Unused assets list:', ...unusedAssetsList]);
+			unusedAssetsList.length > 0
+				? logger.notifyInfo(['Unused assets list:', ...unusedAssetsList])
+				: logger.notifyInfo(['No unused assets found']);
 		});
 };

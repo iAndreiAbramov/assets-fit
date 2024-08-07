@@ -1,10 +1,24 @@
 export const DEFAULT_CONFIG = {
 	assets: {
-		include: ['assets/'],
-		exclude: [],
+		include: ['src/assets'],
+		exclude: [
+			'node_modules',
+			'.DS_Store',
+			'.git',
+			'.github',
+			'.vscode',
+			'.idea',
+		],
 	},
 	files: {
-		include: ['src/'],
-		exclude: ['node_modules'],
+		include: ['./'],
+		exclude: [
+			'node_modules',
+			'.DS_Store',
+			'.git',
+			'.github',
+			'.vscode',
+			'.idea',
+		],
 	},
 };
